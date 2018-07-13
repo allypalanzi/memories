@@ -13,6 +13,8 @@ class Game extends Component {
       cards: [],
       flipped: 0,
       lastCard: {},
+      matches: 0,
+      maxMatches: 0,
     }
   }
   async getCards() {
@@ -23,7 +25,7 @@ class Game extends Component {
       const cardsState = leveledCards.cards.map((card, index) => {
         return { value: card, matched: false, flipped: false, id: index }
       });
-      this.setState({cards: cardsState, loading: false})
+      this.setState({cards: cardsState, loading: false, maxMatches: cardsState.length / 2})
     } catch (e) {
       console.error(e)
     }
@@ -34,10 +36,13 @@ class Game extends Component {
     const cards = this.state.cards;
     const selectedCard = cards[id];
     const lastCard = this.state.lastCard;
+    let matches = this.state.matches;
     let flipped = this.state.flipped;
     if (lastCard.id !== selectedCard.id && lastCard.value === selectedCard.value) {
       selectedCard.matched = true;
       cards[lastCard.id].matched = true;
+      matches++
+      flipped = 0;
     }
     if (flipped === 2) {
       cards.forEach(card => card.flipped = false);
@@ -45,7 +50,7 @@ class Game extends Component {
     }
     selectedCard.flipped = !selectedCard.flipped;
     const flippedValue = selectedCard.flipped ? flipped + 1 : flipped - 1;
-    this.setState({ cards, flipped: flippedValue, lastCard: selectedCard });
+    this.setState({ cards, flipped: flippedValue, lastCard: selectedCard, matches: matches });
   }
 
   componentWillMount() {
@@ -53,13 +58,15 @@ class Game extends Component {
   }
 
   render() {
-    const { cards, loading, flipped } = this.state;
+    const { cards, loading, flipped, maxMatches, matches } = this.state;
+    console.log(maxMatches, matches)
     if (loading) {
       return (<div>loading</div>)
     }
     const cardDisplay = cards.map((card, index) => <Card onClick={e => this.handleClick(card.value, card.id)} flipped={card.flipped} key={index} id={card.id} value={card.value} matched={card.matched} />);
     return (
       <div className={styles.wrapper}>
+        {matches === maxMatches && <h1>u win</h1>}
         <div className={styles.cards}>
           {cardDisplay}
         </div>

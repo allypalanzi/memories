@@ -10,7 +10,8 @@
   line-height: 1;
   transition: all 100ms ease-in-out;
   cursor: pointer;
-  &:hover:not(:disabled) {
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
     transform: scale(1.1) rotate(-2deg);
     transition: all 100ms ease-in-out;
     box-shadow: 2px 2px 19px 2px #dedddd;
