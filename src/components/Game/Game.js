@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import Timer from '../Timer/Timer'
 import Card from '../Card/Card'
+import Button from '../Button/Button'
 import styles from './Game.scss'
 
 class Game extends Component {
@@ -9,7 +10,7 @@ class Game extends Component {
     super(props);
     this.state = {
       loading: true,
-      level: 'hard',
+      level: 'easy',
       cards: [],
       flipped: 0,
       lastCard: {},
@@ -53,13 +54,27 @@ class Game extends Component {
     this.setState({ cards, flipped: flippedValue, lastCard: selectedCard, matches: matches });
   }
 
+  handleReset() {
+    const cards = this.state.cards;
+    cards.forEach(card => {
+      card.flipped = false;
+      card.matched = false;
+    });
+    this.setState({ cards, flipped: 0, maches: 0, lastCard: {} });
+  }
+
+  toggleLevel() {
+    const level = this.state.level === 'easy' ? 'hard' : 'easy';
+    this.setState({ level });
+    this.getCards();
+  }
+
   componentWillMount() {
     this.getCards();
   }
 
   render() {
-    const { cards, loading, flipped, maxMatches, matches } = this.state;
-    console.log(maxMatches, matches)
+    const { cards, loading, flipped, maxMatches, matches, level } = this.state;
     if (loading) {
       return (<div>loading</div>)
     }
@@ -70,6 +85,8 @@ class Game extends Component {
         <div className={styles.cards}>
           {cardDisplay}
         </div>
+        <Button onClick={e => this.handleReset()} text={'Reset'} />
+        <Button onClick={e => this.toggleLevel()} text={`Change level to ${level === 'easy' ? 'hard' : 'easy'}`} />
         <Timer />
       </div>
     )
