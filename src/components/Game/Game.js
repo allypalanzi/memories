@@ -16,6 +16,7 @@ class Game extends Component {
       lastCard: {},
       matches: 0,
       maxMatches: 0,
+      timer: false
     }
   }
   async getCards() {
@@ -32,26 +33,44 @@ class Game extends Component {
     }
   };
 
-
   handleClick(value, id) {
     const cards = this.state.cards;
     const selectedCard = cards[id];
     const lastCard = this.state.lastCard;
-    let matches = this.state.matches;
-    let flipped = this.state.flipped;
-    if (lastCard.id !== selectedCard.id && lastCard.value === selectedCard.value) {
+    const maxMatches = this.state.maxMatches;
+    const matches = this.state.matches;
+    const flipped = this.state.flipped;
+
+    let newFlippedValue = flipped;
+    let newMatchesValue = matches;
+
+    // First, check if there are already two cards flipped over
+    // And that the selected card is not already flipped (if so, we'll toggle it later)
+    // If so, reset their flipped values.
+    if (flipped === 2 && !selectedCard.flipped) {
+      cards.forEach(card => card.flipped = false);
+      newFlippedValue = 0;
+    }
+
+    // If the selectedCard is already flipped, we need to reflip it, and reduce our flip count.
+    if (selectedCard.flipped) {
+      newFlippedValue--;
+      selectedCard.flipped = false;
+      // If it is not flipped, we flip it, and increase our flip count.
+    } else if (!selectedCard.flipped) {
+      newFlippedValue++;
+      selectedCard.flipped = true;
+    }
+
+    if (flipped !== 2 && lastCard.id !== selectedCard.id && lastCard.value === selectedCard.value) {
       selectedCard.matched = true;
       cards[lastCard.id].matched = true;
-      matches++
-      flipped = 0;
+      newMatchesValue++;
+      newFlippedValue = 0;
     }
-    if (flipped === 2) {
-      cards.forEach(card => card.flipped = false);
-      flipped = 0;
-    }
-    selectedCard.flipped = !selectedCard.flipped;
-    const flippedValue = selectedCard.flipped ? flipped + 1 : flipped - 1;
-    this.setState({ cards, flipped: flippedValue, lastCard: selectedCard, matches: matches });
+
+    const timer = newMatchesValue === maxMatches ? false : true;
+    this.setState({ cards, flipped: Math.max(0, newFlippedValue), lastCard: selectedCard, matches: newMatchesValue, timer });
   }
 
   handleReset() {
@@ -60,12 +79,12 @@ class Game extends Component {
       card.flipped = false;
       card.matched = false;
     });
-    this.setState({ cards, flipped: 0, maches: 0, lastCard: {} });
+    this.setState({ cards, flipped: 0, matches: 0, lastCard: {}, timer: false });
   }
 
   toggleLevel() {
     const level = this.state.level === 'easy' ? 'hard' : 'easy';
-    this.setState({ level });
+    this.setState({ level, timer: false });
     this.getCards();
   }
 
@@ -74,20 +93,26 @@ class Game extends Component {
   }
 
   render() {
-    const { cards, loading, flipped, maxMatches, matches, level } = this.state;
+    const { cards, loading, flipped, maxMatches, matches, level, timer } = this.state;
     if (loading) {
       return (<div>loading</div>)
     }
+
     const cardDisplay = cards.map((card, index) => <Card onClick={e => this.handleClick(card.value, card.id)} flipped={card.flipped} key={index} id={card.id} value={card.value} matched={card.matched} />);
+
     return (
-      <div className={styles.wrapper}>
+      <div>
         {matches === maxMatches && <h1>u win</h1>}
         <div className={styles.cards}>
           {cardDisplay}
         </div>
-        <Button onClick={e => this.handleReset()} text={'Reset'} />
-        <Button onClick={e => this.toggleLevel()} text={`Change level to ${level === 'easy' ? 'hard' : 'easy'}`} />
-        <Timer />
+        <div className={styles.utilites}>
+          <div>
+            <Button onClick={e => this.handleReset()} text={'Reset'} />
+            <Button onClick={e => this.toggleLevel()} text={`Change level to ${level === 'easy' ? 'hard' : 'easy'}`} />
+          </div>
+          {timer && <Timer />}
+        </div>
       </div>
     )
   };
