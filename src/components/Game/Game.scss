@@ -1,3 +1,5 @@
+@import '../../client/styles/vars';
+
 .cards {
   display: flex;
   align-items: center;
@@ -5,12 +7,12 @@
   align-items: space-around;
   text-align: center;
   justify-content: space-between;
-  padding: 2em 0;
+  padding: $sp4 0 0;
 }
 
 .utilites {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 1em;
+  margin: $sps1;
 }

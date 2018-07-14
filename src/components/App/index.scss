@@ -1,23 +1,47 @@
+@import '../../client/styles/vars';
+
+html {
+  height: 100%;
+}
+
 body {
-  background: #fbf1fb;
-  color: #3b3b3b;
-  padding: 10px;
+  background: $purple;
+  color: $body;
+  border-width: 0 $sp1 0;
+  border-style: solid;
+  border-color: $purple-light;
+  position: relative;
+  min-height: 100%;
+  &:after,
+  &:before {
+    content: '';
+    width: 100%;
+    height: $sp1;
+    position: fixed;
+    background: $purple-light;
+  }
+  &:after {
+    top: 0;
+  }
+  &:before {
+    bottom: 0;
+  }
 }
 
 .header {
   font-size: 2em;
-  margin-bottom: .5em;
+  margin-bottom: $sp1;
   font-weight: bold;
 }
 
 .body {
-  margin-bottom: .5em;
+  margin-bottom: $sp1;
 }
 
 .app {
-  padding: 2em;
+  padding: $sp4 0;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
   text-align: center;
-  max-width: 800px;
+  max-width: $max-container;
   margin: 0 auto;
 }

@@ -1,19 +1,21 @@
+@import '../../client/styles/vars';
+
 .card {
-  background: #b6f8ff;
-  padding: 50px 0;
-  flex-basis: 20%;
-  margin: 2%;
-  color: #3b3b3b;
-  font-size: 30px;
+  background: $card;
+  padding: $sps5 0;
+  flex-basis: calc(100% / 4 - #{$sps1} * 2);
+  margin: $sps1;
+  color: $body;
+  font-size: $sps3;
   border-radius: 2%;
-  border: 1px solid darken(#b6f8ff, 10%);
+  border: 1px solid $card-border;
   line-height: 1;
   transition: all 200ms ease-in-out;
   cursor: pointer;
   outline: 0;
   &:hover:not(:disabled),
   &:focus:not(:disabled) {
-    transform: scale(1.1) rotate(-2deg);
+    transform: scale(1.05) rotate(-2deg);
     transition: all 100ms ease-in-out;
     box-shadow: 2px 2px 19px 2px #dedddd;
   }
@@ -24,15 +26,15 @@
   transition: all 400ms ease-in-out;
   &:hover:not(:disabled),
   &:focus:not(:disabled) {
-    transform: scale(1.1) rotateY(180deg);
+    transform: scale(1.01) rotateY(180deg);
     transition: all 400ms ease-in-out;
   }
 }
 
 .icon_container {
   position: relative;
-  width: 30px;
-  height: 30px;
+  width: $sps3;
+  height: $sps3;
   margin: 0 auto;
 }
 

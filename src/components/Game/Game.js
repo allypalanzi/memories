@@ -13,7 +13,6 @@ class Game extends Component {
       level: 'easy',
       cards: [],
       flipped: 0,
-      lastCard: {},
       matches: 0,
       maxMatches: 0,
       timer: false
@@ -36,7 +35,7 @@ class Game extends Component {
   handleClick(value, id) {
     const cards = this.state.cards;
     const selectedCard = cards[id];
-    const lastCard = this.state.lastCard;
+    const otherFlippedCard = cards.find(card => card.flipped && !card.matched && card.id != id);
     const maxMatches = this.state.maxMatches;
     const matches = this.state.matches;
     const flipped = this.state.flipped;
@@ -62,15 +61,15 @@ class Game extends Component {
       selectedCard.flipped = true;
     }
 
-    if (flipped !== 2 && lastCard.id !== selectedCard.id && lastCard.value === selectedCard.value) {
+    if (flipped !== 2 && otherFlippedCard && otherFlippedCard.value === selectedCard.value) {
       selectedCard.matched = true;
-      cards[lastCard.id].matched = true;
+      cards[otherFlippedCard.id].matched = true;
       newMatchesValue++;
       newFlippedValue = 0;
     }
 
     const timer = newMatchesValue === maxMatches ? false : true;
-    this.setState({ cards, flipped: Math.max(0, newFlippedValue), lastCard: selectedCard, matches: newMatchesValue, timer });
+    this.setState({ cards, flipped: Math.max(0, newFlippedValue), matches: newMatchesValue, timer });
   }
 
   handleReset() {
@@ -79,12 +78,13 @@ class Game extends Component {
       card.flipped = false;
       card.matched = false;
     });
-    this.setState({ cards, flipped: 0, matches: 0, lastCard: {}, timer: false });
+    this.setState({ cards, flipped: 0, matches: 0, timer: false });
   }
 
   toggleLevel() {
     const level = this.state.level === 'easy' ? 'hard' : 'easy';
-    this.setState({ level, timer: false });
+    this.handleReset();
+    this.setState({ level });
     this.getCards();
   }
 

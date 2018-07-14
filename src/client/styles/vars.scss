@@ -1,0 +1,33 @@
+// Main colors
+$purple: #fbf1fb;
+$purple-light: darken($purple, 10%);
+
+$green: #cffdcf;
+
+$blue: #b6f8ff;
+
+// Layout
+$max-container: 800px;
+
+// Spacing ems (use for type)
+$sp1: .5em;
+$sp2: 1em;
+$sp3: 1.5em;
+$sp4: 2em;
+
+// Spacing px (use for static)
+$sps1: 10px;
+$sps2: 20px;
+$sps3: 30px;
+$sps4: 40px;
+$sps5: 50px;
+
+// UI
+$button: $green;
+$button-border: darken($button, 10%);
+$button-hover: darken($green, 20%);
+
+$card: $blue;
+$card-border: darken($blue, 10%);
+
+$body: darken($purple, 80%);
