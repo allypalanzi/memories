@@ -1,0 +1,13 @@
+.button {
+  border: 0;
+  padding: 1em;
+  background: #cffdcf;
+  margin: .5em;
+  border: 1px solid darken(#cffdcf, 10%);
+  cursor: pointer;
+  transition: background 200ms ease-in-out;
+  &:hover {
+    background: darken(#cffdcf, 20%);
+    transition: background 200ms ease-in-out;
+  }
+}
