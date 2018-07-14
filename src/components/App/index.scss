@@ -1,10 +1,22 @@
+body {
+  background: #fbf1fb;
+  color: #3b3b3b;
+  padding: 10px;
+}
+
 .header {
   font-size: 2em;
   margin-bottom: .5em;
+  font-weight: bold;
 }
+
+.body {
+  margin-bottom: .5em;
+}
+
 .app {
   padding: 2em;
-  font-family: sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
   text-align: center;
   max-width: 800px;
   margin: 0 auto;

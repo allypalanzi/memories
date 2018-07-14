@@ -8,13 +8,42 @@
   border-radius: 2%;
   border: 1px solid darken(#b6f8ff, 10%);
   line-height: 1;
-  transition: all 100ms ease-in-out;
+  transition: all 200ms ease-in-out;
   cursor: pointer;
+  outline: 0;
   &:hover:not(:disabled),
   &:focus:not(:disabled) {
     transform: scale(1.1) rotate(-2deg);
     transition: all 100ms ease-in-out;
     box-shadow: 2px 2px 19px 2px #dedddd;
+  }
+}
+
+.flipped {
+  transform: rotateY(180deg);
+  transition: all 400ms ease-in-out;
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    transform: scale(1.1) rotateY(180deg);
+    transition: all 400ms ease-in-out;
+  }
+}
+
+.icon_container {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+}
+
+.icon {
+  opacity: 0;
+  transition: opacity 400ms ease-in-out;
+  position: absolute;
+  transform: rotateY(-180deg);
+  &.visible {
+    opacity: 1;
+    transition: opacity 400ms ease-in-out;
   }
 }
 
