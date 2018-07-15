@@ -88,7 +88,7 @@ class Game extends Component {
     this.getCards(level);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getCards(this.state.level);
   }
 
