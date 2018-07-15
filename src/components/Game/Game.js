@@ -5,6 +5,8 @@ import Card from '../Card/Card'
 import Button from '../Button/Button'
 import styles from './Game.scss'
 
+import { getCardsService } from '../../client/services';
+
 class Game extends Component {
   constructor(props) {
     super(props);
@@ -15,20 +17,18 @@ class Game extends Component {
       flipped: 0,
       matches: 0,
       maxMatches: 0,
-      timer: false
+      timer: false,
+      error: false,
     }
   }
-  async getCards() {
+
+  async getCards(level) {
     try {
-      const response = await fetch('https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json');
-      const cards = await response.json();
-      const leveledCards = cards.levels.find(card => card.difficulty === this.state.level);
-      const cardsState = leveledCards.cards.map((card, index) => {
-        return { value: card, matched: false, flipped: false, id: index }
-      });
-      this.setState({cards: cardsState, loading: false, maxMatches: cardsState.length / 2})
+      const cards = await getCardsService(level);
+      this.setState({ cards, loading: false, maxMatches: cards.length / 2} );
     } catch (e) {
-      console.error(e)
+      this.setState({ error: true, loading: false });
+      console.error('oh no! an error!', e);
     }
   };
 
@@ -85,17 +85,21 @@ class Game extends Component {
     const level = this.state.level === 'easy' ? 'hard' : 'easy';
     this.handleReset();
     this.setState({ level });
-    this.getCards();
+    this.getCards(level);
   }
 
   componentWillMount() {
-    this.getCards();
+    this.getCards(this.state.level);
   }
 
   render() {
-    const { cards, loading, flipped, maxMatches, matches, level, timer } = this.state;
+    const { cards, loading, flipped, maxMatches, matches, level, timer, error } = this.state;
     if (loading) {
       return (<div>loading</div>)
+    }
+
+    if (error) {
+      return (<div>error</div>)
     }
 
     const cardDisplay = cards.map((card, index) => <Card onClick={e => this.handleClick(card.value, card.id)} flipped={card.flipped} key={index} id={card.id} value={card.value} matched={card.matched} />);
