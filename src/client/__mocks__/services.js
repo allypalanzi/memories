@@ -1,4 +1,4 @@
-export const getCardsService = () =>
+const getCardsService = () =>
   Promise.resolve([
     {
       value: '✈',
@@ -49,3 +49,5 @@ export const getCardsService = () =>
       id: 7,
     },
   ])
+
+export default getCardsService

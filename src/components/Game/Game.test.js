@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
-import Game from './Game.js'
+import Game from './Game'
 
 jest.mock('../../client/services')
 

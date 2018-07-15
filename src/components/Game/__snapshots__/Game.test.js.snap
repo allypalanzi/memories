@@ -10,7 +10,7 @@ exports[`<Game /> renders correctly 1`] = `
     <Card
       flipped={false}
       id={0}
-      key="0"
+      key="0_✈"
       matched={false}
       onClick={[Function]}
       value="✈"
@@ -18,7 +18,7 @@ exports[`<Game /> renders correctly 1`] = `
     <Card
       flipped={false}
       id={1}
-      key="1"
+      key="1_♘"
       matched={false}
       onClick={[Function]}
       value="♘"
@@ -26,7 +26,7 @@ exports[`<Game /> renders correctly 1`] = `
     <Card
       flipped={false}
       id={2}
-      key="2"
+      key="2_✈"
       matched={false}
       onClick={[Function]}
       value="✈"
@@ -34,7 +34,7 @@ exports[`<Game /> renders correctly 1`] = `
     <Card
       flipped={false}
       id={3}
-      key="3"
+      key="3_♫"
       matched={false}
       onClick={[Function]}
       value="♫"
@@ -42,7 +42,7 @@ exports[`<Game /> renders correctly 1`] = `
     <Card
       flipped={false}
       id={4}
-      key="4"
+      key="4_♫"
       matched={false}
       onClick={[Function]}
       value="♫"
@@ -50,7 +50,7 @@ exports[`<Game /> renders correctly 1`] = `
     <Card
       flipped={false}
       id={5}
-      key="5"
+      key="5_☆"
       matched={false}
       onClick={[Function]}
       value="☆"
@@ -58,7 +58,7 @@ exports[`<Game /> renders correctly 1`] = `
     <Card
       flipped={false}
       id={6}
-      key="6"
+      key="6_♘"
       matched={false}
       onClick={[Function]}
       value="♘"
@@ -66,7 +66,7 @@ exports[`<Game /> renders correctly 1`] = `
     <Card
       flipped={false}
       id={7}
-      key="7"
+      key="7_☆"
       matched={false}
       onClick={[Function]}
       value="☆"

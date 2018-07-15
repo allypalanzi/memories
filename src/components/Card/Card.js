@@ -20,7 +20,9 @@ const Card = props => {
           {value}
         </div>
         <div className={flipped || matched ? `${styles.icon}` : `${styles.icon} ${styles.visible}`}>
-          ✨
+          <span role="img" aria-label="sparkle emoji">
+            ✨
+          </span>
         </div>
       </div>
     </button>

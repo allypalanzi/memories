@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
-import Card from './Card.js'
+import Card from './Card'
 
 describe('<Card />', () => {
   const onClick = jest.fn()

@@ -2,7 +2,7 @@
  * getCardsService to pull card data
  * @param {string} level - level for which card data to pull from the api
  * */
-export async function getCardsService(level) {
+export default async function getCardsService(level) {
   try {
     const response = await fetch('https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json')
     const cards = await response.json()
@@ -15,6 +15,6 @@ export async function getCardsService(level) {
       id: index,
     }))
   } catch (e) {
-    console.error('oh no! an error!', e)
+    return e
   }
 }

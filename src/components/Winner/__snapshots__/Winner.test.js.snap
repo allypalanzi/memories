@@ -4,6 +4,20 @@ exports[`<Winner /> renders correctly 1`] = `
 <h3
   className="winner"
 >
-  🎉 You win! 🎉
+  <span
+    aria-label="tada emoji"
+    role="img"
+  >
+    🎉
+  </span>
+   
+  You win!
+   
+  <span
+    aria-label="tada emoji"
+    role="img"
+  >
+    🎉
+  </span>
 </h3>
 `;

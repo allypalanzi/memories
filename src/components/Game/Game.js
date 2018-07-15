@@ -6,7 +6,7 @@ import Button from '../Button/Button'
 import Winner from '../Winner/Winner'
 import styles from './Game.scss'
 
-import { getCardsService } from '../../client/services'
+import getCardsService from '../../client/services'
 
 class Game extends Component {
   constructor(props) {
@@ -19,24 +19,23 @@ class Game extends Component {
       matches: 0,
       maxMatches: 0,
       timer: false,
-      error: false,
     }
   }
 
   async getCards(level) {
     try {
       const cards = await getCardsService(level)
-      this.setState({ cards, loading: false, maxMatches: cards.length / 2 })
+      return this.setState({ cards, loading: false, maxMatches: cards.length / 2 })
     } catch (e) {
-      this.setState({ error: true, loading: false })
-      console.error('oh no! an error!', e)
+      this.setState({ loading: false })
+      return e
     }
   }
 
   handleCardClick(value, id) {
     const cards = this.state.cards
     const selectedCard = cards[id]
-    const otherFlippedCard = cards.find(card => card.flipped && !card.matched && card.id != id)
+    const otherFlippedCard = cards.find(card => card.flipped && !card.matched && card.id !== id)
     const maxMatches = this.state.maxMatches
     const matches = this.state.matches
     const flipped = this.state.flipped
@@ -54,18 +53,18 @@ class Game extends Component {
 
     // If the selectedCard is already flipped, we need to reflip it, and reduce our flip count.
     if (selectedCard.flipped) {
-      newFlippedValue--
+      newFlippedValue -= 1
       selectedCard.flipped = false
       // If it is not flipped, we flip it, and increase our flip count.
     } else if (!selectedCard.flipped) {
-      newFlippedValue++
+      newFlippedValue += 1
       selectedCard.flipped = true
     }
 
     if (flipped !== 2 && otherFlippedCard && otherFlippedCard.value === selectedCard.value) {
       selectedCard.matched = true
       cards[otherFlippedCard.id].matched = true
-      newMatchesValue++
+      newMatchesValue += 1
       newFlippedValue = 0
     }
 
@@ -94,44 +93,46 @@ class Game extends Component {
   }
 
   render() {
-    const { cards, loading, flipped, maxMatches, matches, level, timer, error } = this.state
+    const { cards, loading, maxMatches, matches, level, timer } = this.state
     if (loading) {
       return <div>loading</div>
     }
 
-    if (error) {
-      return <div>error</div>
+    if (cards.length) {
+      const cardDisplay = cards.map(card => (
+        <Card
+          onClick={() => this.handleCardClick(card.value, card.id)}
+          flipped={card.flipped}
+          key={`${card.id}_${card.value}`}
+          id={card.id}
+          value={card.value}
+          matched={card.matched}
+        />
+      ))
+
+      return (
+        <div className={styles.game}>
+          {matches === maxMatches && <Winner />}
+          <div
+            className={matches === maxMatches ? `${styles.cards} ${styles.winner}` : styles.cards}
+          >
+            {cardDisplay}
+          </div>
+          <div className={styles.utilites}>
+            <div>
+              <Button onClick={() => this.handleReset()} text={'Reset'} />
+              <Button
+                onClick={() => this.toggleLevel()}
+                text={`Change level to ${level === 'easy' ? 'hard' : 'easy'}`}
+              />
+            </div>
+            {timer && <Timer />}
+          </div>
+        </div>
+      )
     }
 
-    const cardDisplay = cards.map((card, index) => (
-      <Card
-        onClick={e => this.handleCardClick(card.value, card.id)}
-        flipped={card.flipped}
-        key={index}
-        id={card.id}
-        value={card.value}
-        matched={card.matched}
-      />
-    ))
-
-    return (
-      <div className={styles.game}>
-        {matches === maxMatches && <Winner />}
-        <div className={matches === maxMatches ? `${styles.cards} ${styles.winner}` : styles.cards}>
-          {cardDisplay}
-        </div>
-        <div className={styles.utilites}>
-          <div>
-            <Button onClick={e => this.handleReset()} text={'Reset'} />
-            <Button
-              onClick={e => this.toggleLevel()}
-              text={`Change level to ${level === 'easy' ? 'hard' : 'easy'}`}
-            />
-          </div>
-          {timer && <Timer />}
-        </div>
-      </div>
-    )
+    return <div>error</div>
   }
 }
 
