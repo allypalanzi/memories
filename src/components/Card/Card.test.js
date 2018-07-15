@@ -3,8 +3,6 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import Card from './Card.js';
 
-jest.mock('../../client/services');
-
 describe('<Card />', () => {
   const onClick = jest.fn();
   const props = {
