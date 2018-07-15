@@ -1,4 +1,6 @@
-@import '../../client/styles/vars';
+@import './_vars';
+@import './_layout';
+@import './_type.scss';
 
 html {
   height: 100%;
@@ -12,6 +14,8 @@ body {
   border-color: $purple-light;
   position: relative;
   min-height: 100%;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  font-size: 16px;
   &:after,
   &:before {
     content: '';
@@ -26,22 +30,7 @@ body {
   &:before {
     bottom: 0;
   }
-}
-
-.header {
-  font-size: 2em;
-  margin-bottom: $sp1;
-  font-weight: bold;
-}
-
-.body {
-  margin-bottom: $sp1;
-}
-
-.app {
-  padding: $sp4 0;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
-  text-align: center;
-  max-width: $max-container;
-  margin: 0 auto;
+  @media(min-width: $bp-small) {
+    font-size: 18px;
+  }
 }

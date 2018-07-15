@@ -1,4 +1,4 @@
-@import '../../client/styles/vars';
+@import '../../client/styles/_vars';
 
 .cards {
   display: flex;
@@ -7,7 +7,7 @@
   align-items: space-around;
   text-align: center;
   justify-content: space-between;
-  padding: $sp4 0 0;
+  padding: $sp3 0 0;
 }
 
 .utilites {
