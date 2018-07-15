@@ -3,7 +3,6 @@
 exports[`<Card /> renders correctly 1`] = `
 <button
   className="card"
-  disabled={false}
   onClick={[Function]}
 >
   <div
