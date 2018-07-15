@@ -15,7 +15,7 @@ const App = () => (
         ✨
       </span>
     </h1>
-    <p>Select a card and find it{"'"}s pair!</p>
+    <p>Select a card and find the pair!</p>
     <Game />
   </main>
 )
