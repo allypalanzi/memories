@@ -32,7 +32,7 @@ class Game extends Component {
     }
   };
 
-  handleClick(value, id) {
+  handleCardClick(value, id) {
     const cards = this.state.cards;
     const selectedCard = cards[id];
     const otherFlippedCard = cards.find(card => card.flipped && !card.matched && card.id != id);
@@ -69,7 +69,7 @@ class Game extends Component {
     }
 
     const timer = newMatchesValue === maxMatches ? false : true;
-    this.setState({ cards, flipped: Math.max(0, newFlippedValue), matches: newMatchesValue, timer });
+    this.setState({ cards, flipped: newFlippedValue, matches: newMatchesValue, timer });
   }
 
   handleReset() {
@@ -102,7 +102,7 @@ class Game extends Component {
       return (<div>error</div>)
     }
 
-    const cardDisplay = cards.map((card, index) => <Card onClick={e => this.handleClick(card.value, card.id)} flipped={card.flipped} key={index} id={card.id} value={card.value} matched={card.matched} />);
+    const cardDisplay = cards.map((card, index) => <Card onClick={e => this.handleCardClick(card.value, card.id)} flipped={card.flipped} key={index} id={card.id} value={card.value} matched={card.matched} />);
 
     return (
       <div>
