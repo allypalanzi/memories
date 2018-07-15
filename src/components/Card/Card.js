@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styles from './Card.scss'
 
 const Card = props => {
-  const { value, onClick, flipped, matched } = props
+  const { value, onClick, flipped, matched, disabled } = props
   const classList = [styles.card]
   if (flipped || matched) {
     classList.push(styles.flipped)
@@ -14,7 +14,7 @@ const Card = props => {
   }
 
   return (
-    <button disabled={matched} onClick={onClick} className={classList.join(' ')}>
+    <button disabled={matched || disabled} onClick={onClick} className={classList.join(' ')}>
       <div className={styles.icon_container}>
         <div className={flipped || matched ? `${styles.icon} ${styles.visible}` : styles.icon}>
           {value}
@@ -34,6 +34,7 @@ Card.propTypes = {
   onClick: PropTypes.func,
   flipped: PropTypes.bool,
   matched: PropTypes.bool,
+  disabled: PropTypes.bool,
 }
 
 export default Card
