@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Game /> renders correctly 1`] = `
+<div
+  className="game"
+>
+  <div
+    className="cards"
+  >
+    <Card
+      flipped={false}
+      id={0}
+      key="0"
+      matched={false}
+      onClick={[Function]}
+      value="✈"
+    />
+    <Card
+      flipped={false}
+      id={1}
+      key="1"
+      matched={false}
+      onClick={[Function]}
+      value="♘"
+    />
+    <Card
+      flipped={false}
+      id={2}
+      key="2"
+      matched={false}
+      onClick={[Function]}
+      value="✈"
+    />
+    <Card
+      flipped={false}
+      id={3}
+      key="3"
+      matched={false}
+      onClick={[Function]}
+      value="♫"
+    />
+    <Card
+      flipped={false}
+      id={4}
+      key="4"
+      matched={false}
+      onClick={[Function]}
+      value="♫"
+    />
+    <Card
+      flipped={false}
+      id={5}
+      key="5"
+      matched={false}
+      onClick={[Function]}
+      value="☆"
+    />
+    <Card
+      flipped={false}
+      id={6}
+      key="6"
+      matched={false}
+      onClick={[Function]}
+      value="♘"
+    />
+    <Card
+      flipped={false}
+      id={7}
+      key="7"
+      matched={false}
+      onClick={[Function]}
+      value="☆"
+    />
+  </div>
+  <div
+    className="utilites"
+  >
+    <div>
+      <Button
+        onClick={[Function]}
+        text="Reset"
+      />
+      <Button
+        onClick={[Function]}
+        text="Change level to hard"
+      />
+    </div>
+  </div>
+</div>
+`;
