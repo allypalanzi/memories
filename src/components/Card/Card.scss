@@ -2,7 +2,7 @@
 
 .card {
   background: $card;
-  padding: $sps5 0;
+  padding: $sp3 0;
   flex-basis: calc(100% / 4 - #{$sps1} * 2);
   margin: $sps1;
   color: $body;
@@ -10,13 +10,13 @@
   border-radius: 2%;
   border: 1px solid $card-border;
   line-height: 1;
-  transition: all 200ms ease-in-out;
+  transition: all 400ms ease-in-out;
   cursor: pointer;
   outline: 0;
   &:hover:not(:disabled),
   &:focus:not(:disabled) {
     transform: scale(1.05) rotate(-2deg);
-    transition: all 100ms ease-in-out;
+    transition: all 400ms ease-in-out;
     box-shadow: 2px 2px 19px 2px #dedddd;
   }
 }
