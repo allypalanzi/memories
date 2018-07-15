@@ -16,4 +16,9 @@ describe('<Card />', () => {
   it('renders correctly', () => {
     expect(toJson(renderedComponent)).toMatchSnapshot()
   })
+
+  it('calls onClick when card is clicked', () => {
+    renderedComponent.simulate('click')
+    expect(onClick).toHaveBeenCalled()
+  })
 })
