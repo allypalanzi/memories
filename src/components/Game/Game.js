@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Timer from '../Timer/Timer'
 import Card from '../Card/Card'
 import Button from '../Button/Button'
+import Winner from '../Winner/Winner'
 import styles from './Game.scss'
 
 import { getCardsService } from '../../client/services';
@@ -105,9 +106,9 @@ class Game extends Component {
     const cardDisplay = cards.map((card, index) => <Card onClick={e => this.handleCardClick(card.value, card.id)} flipped={card.flipped} key={index} id={card.id} value={card.value} matched={card.matched} />);
 
     return (
-      <div>
-        {matches === maxMatches && <h1>u win</h1>}
-        <div className={styles.cards}>
+      <div className={styles.game}>
+        {matches === maxMatches && <Winner />}
+        <div className={matches === maxMatches ? `${styles.cards} ${styles.winner}` : styles.cards}>
           {cardDisplay}
         </div>
         <div className={styles.utilites}>

@@ -1,5 +1,9 @@
 @import '../../client/styles/_vars';
 
+.game {
+  position: relative;
+}
+
 .cards {
   display: flex;
   align-items: center;
@@ -8,6 +12,11 @@
   text-align: center;
   justify-content: space-between;
   padding: $sp3 0 0;
+  transition: opacity 100ms ease-in-out;
+  &.winner {
+    opacity: .4;
+    transition: opacity 100ms ease-in-out;
+  }
 }
 
 .utilites {

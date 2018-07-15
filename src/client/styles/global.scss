@@ -23,6 +23,7 @@ body {
     height: $sp1;
     position: fixed;
     background: $purple-light;
+    z-index: 1;
   }
   &:after {
     top: 0;
