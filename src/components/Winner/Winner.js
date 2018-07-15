@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './Winner.scss';
+import React from 'react'
+import styles from './Winner.scss'
 
-const Winner = props => <h3 className={styles.winner}>🎉 You win! 🎉</h3>;
+const Winner = props => <h3 className={styles.winner}>🎉 You win! 🎉</h3>
 
-export default Winner;
+export default Winner

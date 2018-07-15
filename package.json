@@ -38,6 +38,7 @@
     "lint": "npm run lint-script && npm run lint-style",
     "lint-script": "kyt lint-script",
     "lint-style": "kyt lint-style",
+    "lint-fix": "kyt lint-script -- --fix",
     "kyt:help": "kyt --help"
   }
 }
