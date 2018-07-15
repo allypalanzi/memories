@@ -110,8 +110,9 @@ class Game extends Component {
           </div>
           <div className={styles.utilites}>
             <div>
-              <Button onClick={() => this.handleReset()} text={'Reset'} />
+              <Button id="qa-reset" onClick={() => this.handleReset()} text={'Reset'} />
               <Button
+                id="qa-toggle"
                 onClick={() => this.toggleLevel()}
                 text={`Change level to ${level === 'easy' ? 'hard' : 'easy'}`}
               />

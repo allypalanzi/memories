@@ -85,10 +85,12 @@ exports[`<Game /> renders correctly 1`] = `
   >
     <div>
       <Button
+        id="qa-reset"
         onClick={[Function]}
         text="Reset"
       />
       <Button
+        id="qa-toggle"
         onClick={[Function]}
         text="Change level to hard"
       />
