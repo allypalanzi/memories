@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Winner.scss'
 
 const Winner = () => (
-  <h3 className={styles.winner}>
+  <h2 className={styles.winner}>
     <span role="img" aria-label="tada emoji">
       🎉
     </span>{' '}
@@ -10,7 +10,7 @@ const Winner = () => (
     <span role="img" aria-label="tada emoji">
       🎉
     </span>
-  </h3>
+  </h2>
 )
 
 export default Winner

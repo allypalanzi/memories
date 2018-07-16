@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Winner /> renders correctly 1`] = `
-<h3
+<h2
   className="winner"
 >
   <span
@@ -19,5 +19,5 @@ exports[`<Winner /> renders correctly 1`] = `
   >
     🎉
   </span>
-</h3>
+</h2>
 `;
