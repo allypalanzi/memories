@@ -10,9 +10,7 @@ exports[`<Winner /> renders correctly 1`] = `
   >
     🎉
   </span>
-   
   You win!
-   
   <span
     aria-label="tada emoji"
     role="img"

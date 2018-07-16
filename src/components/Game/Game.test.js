@@ -66,4 +66,14 @@ describe('<Game />', () => {
     expect(updatedCard1.props().matched).toBe(false)
     expect(updatedCard2.props().matched).toBe(false)
   })
+
+  it('When state is loading, loading div is rendered', () => {
+    renderedComponent.setState({ loading: true })
+    expect(renderedComponent.find('.qa-loading')).toHaveLength(1)
+  })
+
+  it('When no cards are in the state, error div is rendered', () => {
+    renderedComponent.setState({ cards: [], loading: false })
+    expect(renderedComponent.find('.qa-error')).toHaveLength(1)
+  })
 })

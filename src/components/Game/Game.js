@@ -86,7 +86,7 @@ class Game extends Component {
   render() {
     const { cards, loading, maxMatches, matches, level, timer } = this.state
     if (loading) {
-      return <div>loading</div>
+      return <div className="qa-loading">loading</div>
     }
 
     if (cards.length) {
@@ -126,7 +126,7 @@ class Game extends Component {
       )
     }
 
-    return <div>error</div>
+    return <div className="qa-error">error</div>
   }
 }
 
