@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './Timer.scss'
-
 export const formatTime = time => {
   if (time < 0) return '--:--'
   const h = Math.floor(time / 3600)
@@ -14,7 +12,7 @@ export const formatTime = time => {
   return `${m}:${ss}`
 }
 
-const Timer = ({ time = 0 }) => <div className={styles.timer}>{formatTime(time)}</div>
+const Timer = ({ time = 0 }) => <div>{formatTime(time)}</div>
 
 Timer.propTypes = {
   time: PropTypes.number,

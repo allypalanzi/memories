@@ -32,28 +32,36 @@ describe('<Game />', () => {
   })
 
   it('a card flips when it is selected', () => {
-    renderedComponent.find(Card).first().simulate('click')
-    expect(renderedComponent.find(Card).first().props().flipped).toBe(true)
+    renderedComponent
+      .find(Card)
+      .first()
+      .simulate('click')
+    expect(
+      renderedComponent
+        .find(Card)
+        .first()
+        .props().flipped
+    ).toBe(true)
   })
 
   it('when two cards are selected and they match, they have matched props', () => {
     renderedComponent.find('#qa-reset').simulate('click')
-    const cards = renderedComponent.find({ value: '☆' });
-    cards.first().simulate('click');
-    cards.last().simulate('click');
-    const updatedCards = renderedComponent.find({ value: '☆' });
+    const cards = renderedComponent.find({ value: '☆' })
+    cards.first().simulate('click')
+    cards.last().simulate('click')
+    const updatedCards = renderedComponent.find({ value: '☆' })
     expect(updatedCards.first().props().matched).toBe(true)
     expect(updatedCards.last().props().matched).toBe(true)
   })
 
   it('when two cards are selected and they do not match, they are not matched', () => {
     renderedComponent.find('#qa-reset').simulate('click')
-    const card1 = renderedComponent.find({ value: '☆' }).first();
-    const card2 = renderedComponent.find({ value: '♫' }).first();
-    card1.simulate('click');
-    card2.simulate('click');
-    const updatedCard1 = renderedComponent.find({ value: '☆' }).first();
-    const updatedCard2 = renderedComponent.find({ value: '♫' }).first();
+    const card1 = renderedComponent.find({ value: '☆' }).first()
+    const card2 = renderedComponent.find({ value: '♫' }).first()
+    card1.simulate('click')
+    card2.simulate('click')
+    const updatedCard1 = renderedComponent.find({ value: '☆' }).first()
+    const updatedCard2 = renderedComponent.find({ value: '♫' }).first()
 
     expect(updatedCard1.props().matched).toBe(false)
     expect(updatedCard2.props().matched).toBe(false)

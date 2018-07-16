@@ -40,10 +40,12 @@ class Game extends Component {
 
     let newMatchesValue = matches
 
+    // If the current card is not flipped, flip it
     if (!selectedCard.flipped) {
       selectedCard.flipped = true
     }
 
+    // If there's another flipped card, and the values match, we have a match!
     if (otherFlippedCard && otherFlippedCard.value === selectedCard.value) {
       selectedCard.matched = true
       cards[otherFlippedCard.id].matched = true
@@ -51,6 +53,7 @@ class Game extends Component {
       const timer = newMatchesValue !== maxMatches
       return this.setState({ cards, matches: newMatchesValue, timer })
     } else if (otherFlippedCard) {
+      // Otherwise, wait a few seconds to flip the cards back over
       setTimeout(() => {
         cards.forEach(card => (card.flipped = false))
         return this.setState({ cards })

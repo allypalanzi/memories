@@ -21,4 +21,6 @@ describe('<Card />', () => {
     renderedComponent.simulate('click')
     expect(onClick).toHaveBeenCalled()
   })
+
+  // TODO: tests for styles based on props
 })
